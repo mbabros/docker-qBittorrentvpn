@@ -1,9 +1,9 @@
 # qBittorrent and OpenVPN
 #
-# Version 1.8
+# Version 1.9
 
 FROM ubuntu:18.04
-MAINTAINER MarkusMcNugen
+MAINTAINER Andy Ru
 
 VOLUME /downloads
 VOLUME /config
@@ -28,7 +28,8 @@ ADD qbittorrent/ /etc/qbittorrent/
 RUN chmod +x /etc/qbittorrent/*.sh /etc/qbittorrent/*.init /etc/openvpn/*.sh
 
 # Expose ports and run
-EXPOSE 8080
+EXPOSE 9091
 EXPOSE 8999
 EXPOSE 8999/udp
+CMD ["mv /usr/sbin/openvpn /usr/sbin/myopenvpn", "sed -i 's/exec openvpn/exec myopenvpn/g' /etc/openvpn/start.sh"]
 CMD ["/bin/bash", "/etc/openvpn/start.sh"]
