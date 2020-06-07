@@ -1,6 +1,6 @@
-[preview]: https://raw.githubusercontent.com/MarkusMcNugen/docker-templates/master/qbittorrentvpn/Screenshot.png "qBittorrent Preview"
+[preview]: https://raw.githubusercontent.com/mbabros/docker-templates/master/qbittorrentvpn/Screenshot.png "qBittorrent Preview"
 
-# qBittorrent with WebUI and OpenVPN
+# qBittorrent with WebUI and OpenVPN for QNAP
 Docker container which runs the latest headless qBittorrent client with WebUI while connecting to OpenVPN with iptables killswitch to prevent IP leakage when the tunnel goes down. This is an automated build linked with Ubuntu.
 
 ![alt text][preview]
@@ -21,15 +21,18 @@ To run the container use this command:
 
 ```
 $ docker run --privileged  -d \
+              --cap-add=NET_ADMIN \
               -v /your/config/path/:/config \
               -v /your/downloads/path/:/downloads \
               -e "VPN_ENABLED=yes" \
               -e "LAN_NETWORK=192.168.1.0/24" \
               -e "NAME_SERVERS=8.8.8.8,8.8.4.4" \
-              -p 8080:8080 \
+              -e "WEBUI_PORT=9091" \
+              -e CREATE_TUN_DEVICE=true \
+              -p 9091:8080 \
               -p 8999:8999 \
               -p 8999:8999/udp \
-              markusmcnugen/qbittorrentvpn
+              mbabros/qbittorrentvpn
 ```
 
 # Variables, Volumes, and Ports
