@@ -31,6 +31,6 @@ RUN chmod +x /etc/qbittorrent/*.sh /etc/qbittorrent/*.init /etc/openvpn/*.sh
 EXPOSE 9091
 EXPOSE 8999
 EXPOSE 8999/udp
-CMD ["mv /usr/sbin/openvpn /usr/sbin/myopenvpn"] 
-CMD ["sed -i 's/exec openvpn/exec myopenvpn/g' /etc/openvpn/start.sh"]
+CMD ["/bin/mv /usr/sbin/openvpn /usr/sbin/myopenvpn"] 
+CMD ["/bin/sed -i 's/exec openvpn/exec myopenvpn/g' /etc/openvpn/start.sh"]
 CMD ["/bin/bash", "/etc/openvpn/start.sh"]
