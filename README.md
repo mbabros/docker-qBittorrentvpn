@@ -3,6 +3,9 @@
 # qBittorrent with WebUI and OpenVPN for QNAP
 Docker container which runs the latest headless qBittorrent client with WebUI while connecting to OpenVPN with iptables killswitch to prevent IP leakage when the tunnel goes down. This is an automated build linked with Ubuntu.
 
+Forked from the original due to the following bug:
+https://github.com/haugene/docker-transmission-openvpn/issues/1172
+
 ![alt text][preview]
 
 ## Docker Features
